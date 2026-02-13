@@ -297,39 +297,36 @@
            ═══════════════════════════════════════════════════════════════ */
         
         .header {
-            position: fixed;
+            position: flex;
             top: 0;
             left: 0;
             right: 0;
             height: var(--header-height);
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background-color: #a17070
             border-bottom: 1px solid var(--color-border-light);
-            z-index: 1000;
-            transition: box-shadow var(--transition-base);
+            z-index: 2000;
         }
         
         .header.scrolled {
-            box-shadow: var(--shadow-sm);
+            ;
         }
         
         .header-container {
-            height: 200%;
+            height: 100%;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: left;
         }
         
         .logo {
             display:
-            align-items: center;
-            height: 200px;
+            align-items: left;
+            height: 100px;
         }
         
         .logo img {
-            height: 100%;
+            height: 170%;
             width: auto;
-            display:
         }
         
         .nav {
@@ -528,7 +525,7 @@
             min-height: calc(100vh - var(--header-height));
             display: flex;
             align-items: center;
-            background: linear-gradient(135deg, rgba(44, 95, 79, 0.05) 0%, rgba(139, 115, 85, 0.05) 100%);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.05) 100%);
             position: relative;
             overflow: hidden;
         }
@@ -1355,7 +1352,7 @@
     <header class="header" id="header">
         <div class="container header-container">
             <a href="index.html" class="logo" aria-label="The health directory home">
-                <img src="IMG_8161.jpg" alt="The health directory logo">
+                <img src="D:\Shivi\IMG_8161.jpg" alt="The health directory logo">
             </a>
             
             <nav class="nav" aria-label="Main navigation">
@@ -1713,7 +1710,7 @@
             
             <div class="owner-preview-card">
                 <div class="owner-photo">
-                    <img src="IMG_1715_Crop.JPG" alt="Picture">
+                    <img src="IMG_1715_Crop.JPG" alt="Owner Picture">
                 </div>
                 
                 <div class="owner-intro">
