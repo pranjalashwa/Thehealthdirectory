@@ -1,0 +1,1993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The health directory - Preventive Wellness Consulting & Custom Products</title>
+    <meta name="description" content="Premium preventive wellness consulting and personalized wellness products. Build sustainable routines for sleep, nutrition, stress resilience, and movement.">
+    <meta property="og:title" content="The health directory - Preventive Wellness">
+    <meta property="og:description" content="Premium preventive wellness consulting and personalized wellness products.">
+    <meta property="og:type" content="website">
+    <style>
+        /*
+        ═══════════════════════════════════════════════════════════════
+        THE HEALTH DIRECTORY - Premium Preventive Wellness Website
+        ═══════════════════════════════════════════════════════════════
+        
+        INSTRUCTIONS TO RUN:
+        1. Save all files in the same directory structure:
+           - index.html, consulting.html, products.html, about.html, 
+             owner.html, contact.html, privacy.html, terms.html
+           - styles.css (embedded below, or extract to external file)
+           - script.js (embedded at bottom, or extract to external file)
+           - Create assets/ folder for images
+        2. Open index.html in any modern browser
+        3. All navigation links are functional
+        4. Forms are front-end only (localStorage demo)
+        
+        NEXT STEPS FOR PRODUCTION:
+        - Add backend for form submissions (Node.js/PHP/Python)
+        - Implement cookie consent banner
+        - Review privacy/terms with legal counsel
+        - Replace placeholder images and text
+        - Set up domain email and hosting
+        - Add analytics (Google Analytics/Plausible)
+        - Implement real payment gateway for products
+        - Add SSL certificate
+        ═══════════════════════════════════════════════════════════════
+        */
+
+        /* ═══════════════════════════════════════════════════════════════
+           DESIGN SYSTEM - CSS VARIABLES
+           ═══════════════════════════════════════════════════════════════ */
+        
+        :root {
+            /* Premium Color Palette - Calm & Elegant */
+            --color-primary: #2C5F4F;
+            --color-primary-light: #3A7561;
+            --color-primary-dark: #1E4438;
+            --color-accent: #8B7355;
+            --color-accent-light: #A68968;
+            
+            --color-bg-main: #ffffff;
+            --color-bg-secondary: #ffffff;
+            --color-bg-tertiary: #ffffff;
+            --color-surface: #FFFFFF;
+            
+            --color-text-primary: #1A1A1A;
+            --color-text-secondary: #4A4A4A;
+            --color-text-muted: #757575;
+            --color-text-light: #FFFFFF;
+            
+            --color-border: #ffffff;
+            --color-border-light: #ffffff;
+            
+            --color-success: #3A7561;
+            --color-error: #B85C50;
+            --color-warning: #C9A86A;
+            
+            /* Typography */
+            --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            --font-secondary: Georgia, 'Times New Roman', serif;
+            
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 2rem;
+            --font-size-4xl: 2.5rem;
+            --font-size-5xl: 3rem;
+            
+            --font-weight-light: 300;
+            --font-weight-normal: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 600;
+            --font-weight-bold: 700;
+            
+            --line-height-tight: 1.2;
+            --line-height-normal: 1.5;
+            --line-height-relaxed: 1.75;
+            
+            /* Spacing */
+            --space-xs: 0.5rem;
+            --space-sm: 0.75rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+            --space-4xl: 6rem;
+            
+            /* Border Radius */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --radius-full: 9999px;
+            
+            /* Shadows */
+            --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.12);
+            
+            /* Transitions */
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+            
+            /* Layout */
+            --container-max: 1200px;
+            --container-padding: var(--space-xl);
+            --header-height: 80px;
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           BASE STYLES
+           ═══════════════════════════════════════════════════════════════ */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-normal);
+            line-height: var(--line-height-normal);
+            color: var(--color-text-primary);
+            background-color: var(--color-bg-main);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+        
+        button {
+            font-family: inherit;
+            cursor: pointer;
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           TYPOGRAPHY
+           ═══════════════════════════════════════════════════════════════ */
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: var(--font-weight-semibold);
+            line-height: var(--line-height-tight);
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-lg);
+        }
+        
+        h1 {
+            font-size: var(--font-size-5xl);
+            font-weight: var(--font-weight-bold);
+            letter-spacing: -0.02em;
+        }
+        
+        h2 {
+            font-size: var(--font-size-4xl);
+            letter-spacing: -0.01em;
+        }
+        
+        h3 {
+            font-size: var(--font-size-3xl);
+        }
+        
+        h4 {
+            font-size: var(--font-size-2xl);
+        }
+        
+        h5 {
+            font-size: var(--font-size-xl);
+        }
+        
+        h6 {
+            font-size: var(--font-size-lg);
+        }
+        
+        p {
+            margin-bottom: var(--space-md);
+            line-height: var(--line-height-relaxed);
+            color: var(--color-text-secondary);
+        }
+        
+        .text-serif {
+            font-family: var(--font-secondary);
+        }
+        
+        .text-muted {
+            color: var(--color-text-muted);
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .text-lg {
+            font-size: var(--font-size-lg);
+        }
+        
+        .text-xl {
+            font-size: var(--font-size-xl);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           LAYOUT UTILITIES
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+        
+        .section {
+            padding: var(--space-4xl) 0;
+        }
+        
+        .section-sm {
+            padding: var(--space-3xl) 0;
+        }
+        
+        .section-lg {
+            padding: 6rem 0;
+        }
+        
+        .grid {
+            display: grid;
+            gap: var(--space-xl);
+        }
+        
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+        
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+        
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+        
+        .flex {
+            display: flex;
+        }
+        
+        .flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .gap-sm { gap: var(--space-sm); }
+        .gap-md { gap: var(--space-md); }
+        .gap-lg { gap: var(--space-lg); }
+        .gap-xl { gap: var(--space-xl); }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           HEADER & NAVIGATION
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border-light);
+            z-index: 1000;
+            transition: box-shadow var(--transition-base);
+        }
+        
+        .header.scrolled {
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .header-container {
+            height: 200%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display:
+            align-items: center;
+            height: 200px;
+        }
+        
+        .logo img {
+            height: 100%;
+            width: auto;
+            display:
+        }
+        
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xl);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: var(--space-xl);
+        }
+        
+        .nav-link {
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            color: var(--color-text-secondary);
+            transition: color var(--transition-fast);
+            position: relative;
+        }
+        
+        .nav-link:hover,
+        .nav-link:focus {
+            color: var(--color-primary);
+            outline: none;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-primary);
+            transition: width var(--transition-base);
+        }
+        
+        .nav-link:hover::after,
+        .nav-link:focus::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            padding: var(--space-sm);
+            cursor: pointer;
+        }
+        
+        .mobile-menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: var(--color-text-primary);
+            margin: 5px 0;
+            transition: all var(--transition-base);
+        }
+        
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           BUTTONS
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-md) var(--space-xl);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            text-align: center;
+            border: none;
+            transition: all var(--transition-base);
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        
+        .btn:focus {
+            outline: 3px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+        
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--color-primary-dark);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+        }
+        
+        .btn-ghost {
+            background-color: transparent;
+            color: var(--color-text-secondary);
+            border: 1px solid var(--color-border);
+        }
+        
+        .btn-ghost:hover {
+            background-color: var(--color-bg-secondary);
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+        
+        .btn-lg {
+            padding: var(--space-lg) var(--space-2xl);
+            font-size: var(--font-size-base);
+        }
+        
+        .btn-sm {
+            padding: var(--space-sm) var(--space-md);
+            font-size: var(--font-size-xs);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           CARDS
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .card {
+            background-color: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--color-border-light);
+            transition: all var(--transition-base);
+        }
+        
+        .card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+        
+        .card-header {
+            margin-bottom: var(--space-lg);
+        }
+        
+        .card-title {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--space-sm);
+            color: var(--color-text-primary);
+        }
+        
+        .card-description {
+            color: var(--color-text-secondary);
+            line-height: var(--line-height-relaxed);
+        }
+        
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background-color: var(--color-primary);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-light);
+            font-size: var(--font-size-2xl);
+            margin-bottom: var(--space-lg);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           HERO SECTION
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .hero {
+            margin-top: var(--header-height);
+            min-height: calc(100vh - var(--header-height));
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(44, 95, 79, 0.05) 0%, rgba(139, 115, 85, 0.05) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background-image: url('assets/hero-background.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+        }
+        
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: var(--line-height-tight);
+            margin-bottom: var(--space-lg);
+            color: var(--color-text-primary);
+        }
+        
+        .hero-subtitle {
+            font-size: var(--font-size-xl);
+            color: var(--color-text-secondary);
+            line-height: var(--line-height-relaxed);
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: var(--space-lg);
+            flex-wrap: wrap;
+        }
+        
+        .trust-badges {
+            display: flex;
+            gap: var(--space-xl);
+            margin-top: var(--space-3xl);
+            flex-wrap: wrap;
+        }
+        
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: var(--font-size-sm);
+            color: var(--color-text-muted);
+        }
+        
+        .badge-icon {
+            width: 20px;
+            height: 20px;
+            background-color: var(--color-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-light);
+            font-size: var(--font-size-xs);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           FRAMEWORK SECTION
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .framework {
+            background-color: var(--color-bg-secondary);
+        }
+        
+        .framework-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-2xl);
+            margin-top: var(--space-3xl);
+        }
+        
+        .framework-step {
+            text-align: center;
+            position: relative;
+        }
+        
+        .framework-step:not(:last-child)::after {
+            content: '→';
+            position: absolute;
+            right: -1.5rem;
+            top: 30px;
+            color: var(--color-accent);
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-light);
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-bold);
+            margin: 0 auto var(--space-lg);
+        }
+        
+        .step-title {
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .step-description {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           SERVICES SECTION
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-xl);
+            margin-top: var(--space-3xl);
+        }
+        
+        .service-card {
+            background-color: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--color-border-light);
+            transition: all var(--transition-base);
+        }
+        
+        .service-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+            border-color: var(--color-primary);
+        }
+        
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            background-color: var(--color-primary);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-light);
+            font-size: var(--font-size-3xl);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .service-title {
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--space-md);
+        }
+        
+        .service-description {
+            color: var(--color-text-secondary);
+            line-height: var(--line-height-relaxed);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           PRODUCTS TEASER SECTION
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .products-teaser {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: var(--color-text-light);
+        }
+        
+        .products-teaser h2,
+        .products-teaser p {
+            color: var(--color-text-light);
+        }
+        
+        .products-teaser-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-3xl);
+            align-items: center;
+        }
+        
+        .products-features {
+            list-style: none;
+            margin-top: var(--space-xl);
+        }
+        
+        .products-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-md);
+            margin-bottom: var(--space-md);
+            font-size: var(--font-size-lg);
+        }
+        
+        .products-features li::before {
+            content: '✓';
+            font-weight: var(--font-weight-bold);
+            color: var(--color-accent-light);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           TESTIMONIALS CAROUSEL
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .testimonials {
+            background-color: var(--color-bg-secondary);
+        }
+        
+        .testimonial-carousel {
+            position: relative;
+            max-width: 800px;
+            margin: var(--space-3xl) auto 0;
+            overflow: hidden;
+        }
+        
+        .testimonial-track {
+            display: flex;
+            transition: transform var(--transition-slow);
+        }
+        
+        .testimonial {
+            min-width: 100%;
+            padding: var(--space-2xl);
+            text-align: center;
+        }
+        
+        .testimonial-text {
+            font-size: var(--font-size-xl);
+            font-style: italic;
+            color: var(--color-text-secondary);
+            line-height: var(--line-height-relaxed);
+            margin-bottom: var(--space-xl);
+        }
+        
+        .testimonial-author {
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text-primary);
+        }
+        
+        .testimonial-role {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-muted);
+            margin-top: var(--space-xs);
+        }
+        
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-md);
+            margin-top: var(--space-xl);
+        }
+        
+        .carousel-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+        
+        .carousel-btn:hover {
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            border-color: var(--color-primary);
+        }
+        
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-sm);
+            margin-top: var(--space-md);
+        }
+        
+        .carousel-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--color-border);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+        
+        .carousel-indicator.active {
+            background-color: var(--color-primary);
+            width: 24px;
+            border-radius: var(--radius-full);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           FAQ ACCORDION
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .faq {
+            max-width: 800px;
+            margin: var(--space-3xl) auto 0;
+        }
+        
+        .faq-item {
+            background-color: var(--color-surface);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-md);
+            border: 1px solid var(--color-border-light);
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            width: 100%;
+            padding: var(--space-lg);
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-medium);
+            color: var(--color-text-primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: color var(--transition-fast);
+        }
+        
+        .faq-question:hover {
+            color: var(--color-primary);
+        }
+        
+        .faq-question:focus {
+            outline: 3px solid var(--color-primary);
+            outline-offset: -3px;
+        }
+        
+        .faq-icon {
+            font-size: var(--font-size-xl);
+            transition: transform var(--transition-base);
+        }
+        
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height var(--transition-slow);
+        }
+        
+        .faq-answer-content {
+            padding: 0 var(--space-lg) var(--space-lg);
+            color: var(--color-text-secondary);
+            line-height: var(--line-height-relaxed);
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           OWNER PREVIEW SECTION
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .owner-preview {
+            background-color: var(--color-bg-secondary);
+        }
+        
+        .owner-preview-card {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: var(--space-2xl);
+            align-items: center;
+            background-color: var(--color-surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-3xl);
+            box-shadow: var(--shadow-md);
+            margin-top: var(--space-2xl);
+        }
+        
+        .owner-photo {
+            width: 100%;
+            max-width: 300px;
+            aspect-ratio: 1;
+            border-radius: var(--radius-lg);
+            background-color: var(--color-bg-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-muted);
+            font-size: var(--font-size-sm);
+        }
+        
+        .owner-intro h3 {
+            margin-bottom: var(--space-md);
+        }
+        
+        .owner-intro p {
+            margin-bottom: var(--space-lg);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           NEWSLETTER SECTION
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .newsletter {
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+        }
+        
+        .newsletter h2,
+        .newsletter p {
+            color: var(--color-text-light);
+        }
+        
+        .newsletter-form {
+            max-width: 500px;
+            margin: var(--space-xl) auto 0;
+        }
+        
+        .newsletter-input-group {
+            display: flex;
+            gap: var(--space-md);
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: var(--space-md);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-base);
+        }
+        
+        .newsletter-consent {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-sm);
+            margin-top: var(--space-md);
+            font-size: var(--font-size-xs);
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .newsletter-consent input[type="checkbox"] {
+            margin-top: 3px;
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .footer {
+            background-color: var(--color-text-primary);
+            color: var(--color-text-light);
+            padding: var(--space-4xl) 0 var(--space-xl);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-3xl);
+            margin-bottom: var(--space-3xl);
+        }
+        
+        .footer-section h4 {
+            color: var(--color-text-light);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: var(--font-size-sm);
+            line-height: var(--line-height-relaxed);
+        }
+        
+        .footer-section a:hover {
+            color: var(--color-text-light);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: var(--space-sm);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color var(--transition-fast);
+        }
+        
+        .social-link:hover {
+            background-color: var(--color-primary);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: var(--space-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+        
+        .footer-legal {
+            display: flex;
+            gap: var(--space-lg);
+            font-size: var(--font-size-xs);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           FORM STYLES
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .form-group {
+            margin-bottom: var(--space-lg);
+        }
+        
+        .form-label {
+            display: block;
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .form-label.required::after {
+            content: ' *';
+            color: var(--color-error);
+        }
+        
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: var(--space-md);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-base);
+            font-family: inherit;
+            transition: border-color var(--transition-fast);
+        }
+        
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(44, 95, 79, 0.1);
+        }
+        
+        .form-input.error,
+        .form-select.error,
+        .form-textarea.error {
+            border-color: var(--color-error);
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-error {
+            display: block;
+            margin-top: var(--space-xs);
+            font-size: var(--font-size-xs);
+            color: var(--color-error);
+        }
+        
+        .form-checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-sm);
+        }
+        
+        .form-checkbox-group input[type="checkbox"] {
+            margin-top: 3px;
+        }
+        
+        .form-checkbox-group label {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           MODAL
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            backdrop-filter: blur(4px);
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+        }
+        
+        .modal {
+            background-color: var(--color-surface);
+            border-radius: var(--radius-xl);
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+        }
+        
+        .modal-header {
+            padding: var(--space-xl);
+            border-bottom: 1px solid var(--color-border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-title {
+            font-size: var(--font-size-2xl);
+            margin: 0;
+        }
+        
+        .modal-close {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: none;
+            font-size: var(--font-size-xl);
+            color: var(--color-text-muted);
+            cursor: pointer;
+            transition: color var(--transition-fast);
+        }
+        
+        .modal-close:hover {
+            color: var(--color-text-primary);
+        }
+        
+        .modal-body {
+            padding: var(--space-xl);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           DISCLAIMER
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .disclaimer {
+            background-color: var(--color-bg-tertiary);
+            border-left: 4px solid var(--color-warning);
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            margin: var(--space-xl) 0;
+        }
+        
+        .disclaimer-title {
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .disclaimer-text {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-secondary);
+            line-height: var(--line-height-relaxed);
+            margin: 0;
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           RESPONSIVE - MOBILE
+           ═══════════════════════════════════════════════════════════════ */
+        
+        @media (max-width: 768px) {
+            :root {
+                --header-height: 70px;
+                --container-padding: var(--space-lg);
+            }
+            
+            h1 {
+                font-size: var(--font-size-3xl);
+            }
+            
+            h2 {
+                font-size: var(--font-size-2xl);
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: var(--header-height);
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - var(--header-height));
+                background-color: var(--color-surface);
+                flex-direction: column;
+                padding: var(--space-xl);
+                box-shadow: var(--shadow-lg);
+                transition: left var(--transition-base);
+                overflow-y: auto;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-link::after {
+                display: none;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .framework-step:not(:last-child)::after {
+                display: none;
+            }
+            
+            .products-teaser-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .owner-preview-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .owner-photo {
+                margin: 0 auto;
+            }
+            
+            .newsletter-input-group {
+                flex-direction: column;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .section {
+                padding: var(--space-3xl) 0;
+            }
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           ACCESSIBILITY
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        :focus-visible {
+            outline: 3px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ═══════════════════════════════════════════════════════════════
+         HEADER
+         ═══════════════════════════════════════════════════════════════ -->
+    <header class="header" id="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo" aria-label="The health directory home">
+                <img src="D:\Shivi\IMG_8161.jpg" alt="The health directory logo">
+            </a>
+            
+            <nav class="nav" aria-label="Main navigation">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="consulting.html" class="nav-link">Consulting</a></li>
+                    <li><a href="products.html" class="nav-link">Products</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="owner.html" class="nav-link">Owner</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <a href="consulting.html#booking" class="btn btn-primary">Book a Consultation</a>
+                
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         HERO SECTION
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Build a calmer, stronger baseline</h1>
+                <p class="hero-subtitle">
+                    Sleep, nutrition, movement, and stress support designed around your life. Small systems, repeated daily, for sustained wellness.
+                </p>
+                
+                <div class="hero-cta">
+                    <a href="consulting.html" class="btn btn-primary btn-lg">Book Consultation</a>
+                    <a href="products.html" class="btn btn-secondary btn-lg">Explore Custom Products</a>
+                </div>
+                
+                <div class="trust-badges">
+                    <div class="badge">
+                        <span class="badge-icon">✓</span>
+                        <span>Preventive-first</span>
+                    </div>
+                    <div class="badge">
+                        <span class="badge-icon">✓</span>
+                        <span>Personalized plans</span>
+                    </div>
+                    <div class="badge">
+                        <span class="badge-icon">✓</span>
+                        <span>Privacy-respecting</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         FRAMEWORK SECTION
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="section framework">
+        <div class="container">
+            <h2 class="text-center">Our Preventive Framework</h2>
+            <p class="text-center text-xl text-muted">
+                A structured approach to building sustainable wellness routines
+            </p>
+            
+            <div class="framework-steps">
+                <div class="framework-step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Assess</h3>
+                    <p class="step-description">
+                        Understand your current baseline, goals, and daily rhythms through a comprehensive intake process.
+                    </p>
+                </div>
+                
+                <div class="framework-step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Align</h3>
+                    <p class="step-description">
+                        Collaborate on priorities and create a personalized roadmap that fits your lifestyle and capacity.
+                    </p>
+                </div>
+                
+                <div class="framework-step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Build</h3>
+                    <p class="step-description">
+                        Implement small, evidence-informed habits in nutrition, movement, sleep, and stress management.
+                    </p>
+                </div>
+                
+                <div class="framework-step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Sustain</h3>
+                    <p class="step-description">
+                        Maintain consistency with ongoing support, adjustments, and accountability check-ins.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SERVICES SECTION
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="section">
+        <div class="container">
+            <h2 class="text-center">Preventive Wellness Services</h2>
+            <p class="text-center text-xl text-muted">
+                Personalized guidance to support your long-term health goals
+            </p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🎯</div>
+                    <h3 class="service-title">Preventive Wellness Roadmap</h3>
+                    <p class="service-description">
+                        A comprehensive assessment and personalized plan to reduce risks and build resilience through lifestyle design.
+                    </p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🥗</div>
+                    <h3 class="service-title">Nutrition Foundations</h3>
+                    <p class="service-description">
+                        Evidence-informed guidance on eating patterns, meal timing, and nutrient optimization for sustained energy.
+                    </p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">😴</div>
+                    <h3 class="service-title">Sleep &amp; Recovery</h3>
+                    <p class="service-description">
+                        Support for improving sleep quality, establishing routines, and enhancing daily recovery processes.
+                    </p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🧘</div>
+                    <h3 class="service-title">Stress Resilience</h3>
+                    <p class="service-description">
+                        Practical strategies for managing stress, building calm, and maintaining balance in demanding environments.
+                    </p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">💪</div>
+                    <h3 class="service-title">Movement Planning</h3>
+                    <p class="service-description">
+                        Personalized activity recommendations to support metabolic health, strength, and overall vitality.
+                    </p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🏢</div>
+                    <h3 class="service-title">Executive Wellness</h3>
+                    <p class="service-description">
+                        High-touch support for professionals seeking to optimize performance, energy, and work-life integration.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         PRODUCTS TEASER SECTION
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="section products-teaser">
+        <div class="container">
+            <div class="products-teaser-content">
+                <div>
+                    <h2>Customized Wellness Products</h2>
+                    <p class="text-xl">
+                        Personalized bundles to support your daily routines—tailored to your preferences, goals, and lifestyle.
+                    </p>
+                    
+                    <ul class="products-features">
+                        <li>Personalized flavor profiles and formats</li>
+                        <li>Allergen and dietary restriction customization</li>
+                        <li>Evidence-informed ingredient selection</li>
+                        <li>Flexible delivery schedules</li>
+                    </ul>
+                    
+                    <a href="products.html" class="btn btn-secondary btn-lg" style="margin-top: var(--space-xl);">Explore Products</a>
+                </div>
+                
+                <div>
+                    <div class="disclaimer">
+                        <div class="disclaimer-title">Important Notice</div>
+                        <p class="disclaimer-text">
+                            Our customized products are designed to support wellness routines and are not intended to diagnose, treat, cure, or prevent any disease. Always consult a qualified physician before starting any new supplement or wellness regimen.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         TESTIMONIALS SECTION
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="section testimonials">
+        <div class="container">
+            <h2 class="text-center">What Our Clients Say</h2>
+            <p class="text-center text-xl text-muted">
+                Real experiences from people building better routines
+            </p>
+            
+            <div class="testimonial-carousel">
+                <div class="testimonial-track" id="testimonialTrack">
+                    <div class="testimonial">
+                        <p class="testimonial-text">
+                            "The personalized approach helped me build sustainable habits around sleep and nutrition. I feel more energized and focused throughout the day."
+                        </p>
+                        <div class="testimonial-author">A.K.</div>
+                        <div class="testimonial-role">Software Engineer</div>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <p class="testimonial-text">
+                            "The consultations gave me clarity on simple changes I could make. The customized products fit seamlessly into my routine."
+                        </p>
+                        <div class="testimonial-author">R.M.</div>
+                        <div class="testimonial-role">Marketing Director</div>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <p class="testimonial-text">
+                            "I appreciated the evidence-informed guidance and the focus on building systems rather than quick fixes. Very professional."
+                        </p>
+                        <div class="testimonial-author">S.P.</div>
+                        <div class="testimonial-role">Entrepreneur</div>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <p class="testimonial-text">
+                            "The preventive wellness roadmap helped me stay consistent with my health goals. The support and accountability have been invaluable."
+                        </p>
+                        <div class="testimonial-author">M.J.</div>
+                        <div class="testimonial-role">Consultant</div>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <p class="testimonial-text">
+                            "A calm, structured approach to wellness. The personalized plan respected my schedule and preferences while still being effective."
+                        </p>
+                        <div class="testimonial-author">L.D.</div>
+                        <div class="testimonial-role">Product Manager</div>
+                    </div>
+                </div>
+                
+                <div class="carousel-controls">
+                    <button class="carousel-btn" id="prevTestimonial" aria-label="Previous testimonial">←</button>
+                    <button class="carousel-btn" id="nextTestimonial" aria-label="Next testimonial">→</button>
+                </div>
+                
+                <div class="carousel-indicators" id="testimonialIndicators"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         FAQ SECTION
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="section">
+        <div class="container">
+            <h2 class="text-center">Frequently Asked Questions</h2>
+            <p class="text-center text-xl text-muted">
+                Everything you need to know about our services
+            </p>
+            
+            <div class="faq">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>How does the preventive wellness consulting work?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We begin with a comprehensive intake to understand your current routines, goals, and challenges. From there, we develop a personalized roadmap focusing on nutrition, sleep, stress management, and movement. Ongoing support includes regular check-ins and adjustments to ensure consistency and progress.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Who is this for?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Our services are designed for individuals seeking to build sustainable wellness habits and reduce long-term health risks. This is ideal for professionals, busy parents, and anyone looking to optimize their baseline health. We focus on prevention and routine-building, not medical treatment.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Are consultations available online or in-person?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We offer both online consultations via secure video conferencing and in-person sessions by appointment. Online sessions provide flexibility and convenience, while in-person meetings are available for those who prefer face-to-face interaction.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>What is your pricing structure?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We offer three tiers: Foundation (single consultation + plan), Signature (3-month program with regular check-ins), and Concierge (6-month premium program with priority access). Detailed pricing is available on the Consulting page. All packages include personalized plans and ongoing support.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>How does product customization work?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Our Personalization Studio guides you through selecting your wellness goals, dietary preferences, allergen restrictions, and delivery preferences. Based on your inputs, we suggest product options tailored to your needs. These are wellness support products, not medications, and should be discussed with a qualified healthcare professional.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>What is your privacy and data protection policy?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We take privacy seriously. All personal health information is stored securely and never shared with third parties without your explicit consent. Consultations are confidential, and all data handling complies with applicable privacy regulations. See our Privacy Policy for complete details.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         OWNER PREVIEW SECTION
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="section owner-preview">
+        <div class="container">
+            <h2 class="text-center">Meet the Owner</h2>
+            
+            <div class="owner-preview-card">
+                <div class="owner-photo">
+                    <img src="D:\Shivi\IMG_1715_Crop.JPG" alt="Owner Picture">
+                </div>
+                
+                <div class="owner-intro">
+                    <h3>Shivi Tyagi</h3>
+                    <p class="text-lg">
+                        Shivi Tyagi is a Research Scholar at Banasthali Vidyapith, specializing in clinical and therapeutic nutrition with expertise in Food Technology and Processing. She has over six years of experience in clinical nutrition, integrating evidence-based dietary interventions with applied nutritional science. Her research focuses on functional food development, bioactive compounds, and product stability, with an emphasis on improving nutritional quality and health outcomes. She has authored more than five Scopus-indexed research and review papers and contributed to five or more book chapters in the field of food science and nutrition. She is also an innovator, holding patents and copyrights related to food and nutrition
+technologies, and continues to work toward translating scientific research into practical, health-oriented food solutions.
+                    </p>
+                    <a href="owner.html" class="btn btn-primary">Learn More About the Owner</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         NEWSLETTER SECTION
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="section newsletter">
+        <div class="container">
+            <h2 class="text-center">Stay Informed</h2>
+            <p class="text-center text-xl">
+                Receive evidence-informed wellness insights and updates
+            </p>
+            
+            <form class="newsletter-form" id="newsletterForm">
+                <div class="newsletter-input-group">
+                    <input 
+                        type="email" 
+                        class="newsletter-input" 
+                        placeholder="Enter your email" 
+                        required
+                        aria-label="Email address"
+                    >
+                    <button type="submit" class="btn btn-secondary">Subscribe</button>
+                </div>
+                
+                <div class="newsletter-consent">
+                    <input type="checkbox" id="newsletterConsent" required>
+                    <label for="newsletterConsent">
+                        I consent to receiving emails from The health directory and understand I can unsubscribe at any time.
+                    </label>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         FOOTER
+         ═══════════════════════════════════════════════════════════════ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>The health directory</h4>
+                    <p>
+                        Premium preventive wellness consulting and personalized wellness products.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">FB</a>
+                        <a href="#" class="social-link" aria-label="Instagram">IG</a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">LI</a>
+                        <a href="#" class="social-link" aria-label="Twitter">TW</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="consulting.html">Consulting Services</a></li>
+                        <li><a href="products.html">Custom Products</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="owner.html">Meet the Owner</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Oakwood Residency, Dehradun<br></p>
+                    <p>Email: Shivi@thehealthdirectory.in</p>
+                    <p>Phone: +91-9300000000</p>
+                    <p>Hours: By appointment only</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 The health directory. All rights reserved.</p>
+                <div class="footer-legal">
+                    <span>Not medical advice</span>
+                    <span>•</span>
+                    <span>Consult your physician</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ═══════════════════════════════════════════════════════════════
+        // JAVASCRIPT - script.js
+        // ═══════════════════════════════════════════════════════════════
+        
+        // Mobile Menu Toggle with Focus Trap
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            const isActive = navLinks.classList.toggle('active');
+            mobileMenuToggle.classList.toggle('active');
+            mobileMenuToggle.setAttribute('aria-expanded', isActive);
+            
+            if (isActive) {
+                const firstLink = navLinks.querySelector('a');
+                firstLink?.focus();
+            }
+        });
+        
+        // Close mobile menu on ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                mobileMenuToggle.focus();
+            }
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav') && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+        
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Testimonials Carousel
+        let currentTestimonial = 0;
+        const testimonialTrack = document.getElementById('testimonialTrack');
+        const prevBtn = document.getElementById('prevTestimonial');
+        const nextBtn = document.getElementById('nextTestimonial');
+        const indicators = document.getElementById('testimonialIndicators');
+        const testimonials = testimonialTrack?.querySelectorAll('.testimonial') || [];
+        const totalTestimonials = testimonials.length;
+        
+        // Create indicators
+        if (indicators && totalTestimonials > 0) {
+            for (let i = 0; i < totalTestimonials; i++) {
+                const indicator = document.createElement('div');
+                indicator.classList.add('carousel-indicator');
+                if (i === 0) indicator.classList.add('active');
+                indicator.addEventListener('click', () => goToTestimonial(i));
+                indicators.appendChild(indicator);
+            }
+        }
+        
+        function updateTestimonials() {
+            if (testimonialTrack) {
+                testimonialTrack.style.transform = `translateX(-${currentTestimonial * 100}%)`;
+            }
+            
+            const allIndicators = indicators?.querySelectorAll('.carousel-indicator') || [];
+            allIndicators.forEach((ind, idx) => {
+                ind.classList.toggle('active', idx === currentTestimonial);
+            });
+        }
+        
+        function goToTestimonial(index) {
+            currentTestimonial = index;
+            updateTestimonials();
+        }
+        
+        function nextTestimonial() {
+            currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
+            updateTestimonials();
+        }
+        
+        function prevTestimonial() {
+            currentTestimonial = (currentTestimonial - 1 + totalTestimonials) % totalTestimonials;
+            updateTestimonials();
+        }
+        
+        prevBtn?.addEventListener('click', prevTestimonial);
+        nextBtn?.addEventListener('click', nextTestimonial);
+        
+        // Auto-advance testimonials
+        let testimonialInterval = setInterval(nextTestimonial, 6000);
+        
+        // Pause on hover
+        testimonialTrack?.addEventListener('mouseenter', () => {
+            clearInterval(testimonialInterval);
+        });
+        
+        testimonialTrack?.addEventListener('mouseleave', () => {
+            testimonialInterval = setInterval(nextTestimonial, 6000);
+        });
+        
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Close all other items
+                faqItems.forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                    otherItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                });
+                
+                // Toggle current item
+                if (!isActive) {
+                    item.classList.add('active');
+                    question.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+        
+        // Newsletter Form
+        const newsletterForm = document.getElementById('newsletterForm');
+        
+        newsletterForm?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const emailInput = newsletterForm.querySelector('input[type="email"]');
+            const email = emailInput.value;
+            
+            // Store in localStorage for demo
+            const newsletters = JSON.parse(localStorage.getItem('newsletters') || '[]');
+            newsletters.push({
+                email: email,
+                timestamp: new Date().toISOString()
+            });
+            localStorage.setItem('newsletters', JSON.stringify(newsletters));
+            
+            alert('Thank you for subscribing! You will receive wellness insights and updates.');
+            newsletterForm.reset();
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
