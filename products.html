@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customized Products - The health directory</title>
+    <meta name="description" content="Create your personalized meal plan based on your unique profile, goals, and dietary preferences. Tailored nutrition for optimal wellness.">
+    <style>
+        /* ═══════════════════════════════════════════════════════════════
+           DESIGN SYSTEM - CSS VARIABLES (Same as consulting.html)
+           ═══════════════════════════════════════════════════════════════ */
+        
+        :root {
+            --color-primary: #2C5F4F;
+            --color-primary-light: #3A7561;
+            --color-primary-dark: #1E4438;
+            --color-accent: #8B7355;
+            --color-accent-light: #A68968;
+            
+            --color-bg-main: #FDFDFB;
+            --color-bg-secondary: #F7F6F3;
+            --color-bg-tertiary: #EFEEE9;
+            --color-surface: #FFFFFF;
+            
+            --color-text-primary: #1A1A1A;
+            --color-text-secondary: #4A4A4A;
+            --color-text-muted: #757575;
+            --color-text-light: #FFFFFF;
+            
+            --color-border: #E0DED7;
+            --color-border-light: #F0EEE7;
+            
+            --color-success: #3A7561;
+            --color-error: #B85C50;
+            --color-warning: #C9A86A;
+            
+            --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            --font-secondary: Georgia, 'Times New Roman', serif;
+            
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 2rem;
+            --font-size-4xl: 2.5rem;
+            --font-size-5xl: 3rem;
+            
+            --font-weight-light: 300;
+            --font-weight-normal: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 600;
+            --font-weight-bold: 700;
+            
+            --line-height-tight: 1.2;
+            --line-height-normal: 1.5;
+            --line-height-relaxed: 1.75;
+            
+            --space-xs: 0.5rem;
+            --space-sm: 0.75rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+            --space-4xl: 6rem;
+            
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --radius-full: 9999px;
+            
+            --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.12);
+            
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+            
+            --container-max: 1200px;
+            --container-padding: var(--space-xl);
+            --header-height: 80px;
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           BASE STYLES
+           ═══════════════════════════════════════════════════════════════ */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-normal);
+            line-height: var(--line-height-normal);
+            color: var(--color-text-primary);
+            background-color: var(--color-bg-main);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+        
+        button {
+            font-family: inherit;
+            cursor: pointer;
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           TYPOGRAPHY
+           ═══════════════════════════════════════════════════════════════ */
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: var(--font-weight-semibold);
+            line-height: var(--line-height-tight);
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-lg);
+        }
+        
+        h1 {
+            font-size: var(--font-size-5xl);
+            font-weight: var(--font-weight-bold);
+            letter-spacing: -0.02em;
+        }
+        
+        h2 {
+            font-size: var(--font-size-4xl);
+            letter-spacing: -0.01em;
+        }
+        
+        h3 {
+            font-size: var(--font-size-3xl);
+        }
+        
+        h4 {
+            font-size: var(--font-size-2xl);
+        }
+        
+        p {
+            margin-bottom: var(--space-md);
+            line-height: var(--line-height-relaxed);
+            color: var(--color-text-secondary);
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .text-lg {
+            font-size: var(--font-size-lg);
+        }
+        
+        .text-xl {
+            font-size: var(--font-size-xl);
+        }
+        
+        .text-muted {
+            color: var(--color-text-muted);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           LAYOUT
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+        
+        .section {
+            padding: var(--space-4xl) 0;
+        }
+        
+        .section-sm {
+            padding: var(--space-3xl) 0;
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           HEADER & NAVIGATION
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .header {
+            position: ;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            background-color: rgb(253, 253, 251);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: box-shadow var(--transition-base);
+        }
+        
+        .header.scrolled {
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .header-container {
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            height: 100px;
+        }
+        
+        .logo img {
+            height: 100%;
+            width: auto;
+            display: ;
+        }
+        
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xl);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: var(--space-xl);
+        }
+        
+        .nav-link {
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            color: var(--color-text-secondary);
+            transition: color var(--transition-fast);
+            position: relative;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--color-primary);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-primary);
+            transition: width var(--transition-base);
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            padding: var(--space-sm);
+            cursor: pointer;
+        }
+        
+        .mobile-menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: var(--color-text-primary);
+            margin: 5px 0;
+            transition: all var(--transition-base);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           BUTTONS
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-md) var(--space-xl);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            text-align: center;
+            border: none;
+            transition: all var(--transition-base);
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--color-primary-dark);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+        }
+        
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+        }
+        
+        .btn-lg {
+            padding: var(--space-lg) var(--space-2xl);
+            font-size: var(--font-size-base);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           PAGE HERO
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .page-hero {
+            margin-top: var(--header-height);
+            padding: var(--space-4xl) 0;
+            background: linear-gradient(135deg, rgba(44, 95, 79, 0.05) 0%, rgba(139, 115, 85, 0.05) 100%);
+            text-align: center;
+        }
+        
+        .page-hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: var(--space-md);
+        }
+        
+        .page-hero p {
+            font-size: var(--font-size-xl);
+            max-width: 700px;
+            margin: 0 auto var(--space-lg);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           DISCLAIMER
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .disclaimer {
+            background-color: var(--color-bg-tertiary);
+            border-left: 4px solid var(--color-warning);
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            margin: var(--space-xl) 0;
+        }
+        
+        .disclaimer-title {
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .disclaimer-text {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-secondary);
+            line-height: var(--line-height-relaxed);
+            margin: 0;
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           MEAL PLAN GENERATOR
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .meal-plan-generator {
+            background-color: var(--color-bg-secondary);
+        }
+        
+        .generator-container {
+            max-width: 900px;
+            margin: var(--space-3xl) auto 0;
+            background-color: var(--color-surface);
+            padding: var(--space-2xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-lg);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .form-group {
+            margin-bottom: var(--space-lg);
+        }
+        
+        .form-label {
+            display: block;
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .form-label.required::after {
+            content: ' *';
+            color: var(--color-error);
+        }
+        
+        .form-input,
+        .form-select {
+            width: 100%;
+            padding: var(--space-md);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-base);
+            font-family: inherit;
+            transition: border-color var(--transition-fast);
+        }
+        
+        .form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(44, 95, 79, 0.1);
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: var(--space-lg);
+            flex-wrap: wrap;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            cursor: pointer;
+        }
+        
+        .radio-option input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        .radio-option label {
+            cursor: pointer;
+            font-size: var(--font-size-base);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           MEAL PLAN RESULTS
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .results-container {
+            display: none;
+            margin-top: var(--space-3xl);
+            padding: var(--space-2xl);
+            background-color: var(--color-surface);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .results-container.active {
+            display: block;
+        }
+        
+        .results-header {
+            text-align: center;
+            margin-bottom: var(--space-3xl);
+            padding-bottom: var(--space-xl);
+            border-bottom: 2px solid var(--color-border-light);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: var(--space-lg);
+            background-color: var(--color-bg-secondary);
+            border-radius: var(--radius-md);
+        }
+        
+        .stat-value {
+            font-size: var(--font-size-3xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary);
+            margin-bottom: var(--space-xs);
+        }
+        
+        .stat-label {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .meal-section {
+            margin-bottom: var(--space-3xl);
+        }
+        
+        .meal-section h3 {
+            color: var(--color-primary);
+            border-bottom: 2px solid var(--color-primary);
+            padding-bottom: var(--space-sm);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .meal-items {
+            display: grid;
+            gap: var(--space-md);
+        }
+        
+        .meal-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-md);
+            background-color: var(--color-bg-secondary);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-fast);
+        }
+        
+        .meal-item:hover {
+            background-color: var(--color-bg-tertiary);
+        }
+        
+        .meal-name {
+            font-weight: var(--font-weight-medium);
+            color: var(--color-text-primary);
+        }
+        
+        .meal-quantity {
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-sm);
+        }
+        
+        .notes-section {
+            margin-top: var(--space-2xl);
+            padding: var(--space-xl);
+            background-color: var(--color-bg-tertiary);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--color-primary);
+        }
+        
+        .notes-section h4 {
+            color: var(--color-primary);
+            margin-bottom: var(--space-md);
+            font-size: var(--font-size-lg);
+        }
+        
+        .notes-section ul {
+            list-style-position: inside;
+            color: var(--color-text-secondary);
+        }
+        
+        .notes-section li {
+            margin-bottom: var(--space-sm);
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: var(--space-lg);
+            justify-content: center;
+            margin-top: var(--space-2xl);
+            flex-wrap: wrap;
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .footer {
+            background-color: var(--color-text-primary);
+            color: var(--color-text-light);
+            padding: var(--space-4xl) 0 var(--space-xl);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-3xl);
+            margin-bottom: var(--space-3xl);
+        }
+        
+        .footer-section h4 {
+            color: var(--color-text-light);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: var(--font-size-sm);
+            line-height: var(--line-height-relaxed);
+        }
+        
+        .footer-section a:hover {
+            color: var(--color-text-light);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: var(--space-sm);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color var(--transition-fast);
+        }
+        
+        .social-link:hover {
+            background-color: var(--color-primary);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: var(--space-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+        
+        .footer-legal {
+            display: flex;
+            gap: var(--space-lg);
+            font-size: var(--font-size-xs);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════════════════════════════ */
+        
+        @media (max-width: 768px) {
+            :root {
+                --header-height: 70px;
+                --container-padding: var(--space-lg);
+            }
+            
+            h1 {
+                font-size: var(--font-size-3xl);
+            }
+            
+            h2 {
+                font-size: var(--font-size-2xl);
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: var(--header-height);
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - var(--header-height));
+                background-color: var(--color-surface);
+                flex-direction: column;
+                padding: var(--space-xl);
+                box-shadow: var(--shadow-lg);
+                transition: left var(--transition-base);
+                overflow-y: auto;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .action-buttons .btn {
+                width: 100%;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           ACCESSIBILITY
+           ═══════════════════════════════════════════════════════════════ */
+        
+        :focus-visible {
+            outline: 3px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo" aria-label="The health directory home">
+                <img src="IMG_8161.jpg" alt="The health directory logo">
+            </a>
+            
+            <nav class="nav" aria-label="Main navigation">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="consulting.html" class="nav-link">Consulting</a></li>
+                    <li><a href="products.html" class="nav-link active">Products</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="Founder.html" class="nav-link">Founder</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <a href="consulting.html#booking" class="btn btn-primary">Book Consultation</a>
+                
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Customized Meal Plans</h1>
+            <p>
+                Get a personalized nutrition plan tailored to your body, goals, and dietary preferences. Science-backed recommendations for optimal wellness.
+            </p>
+            
+            <div class="disclaimer">
+                <div class="disclaimer-title">Important Medical Disclaimer</div>
+                <p class="disclaimer-text">
+                    This meal plan generator provides general nutritional guidance and is not a substitute for professional medical advice, diagnosis, or treatment. Always consult with a qualified physician, registered dietitian, or healthcare provider before making significant dietary changes, especially if you have medical conditions, allergies, or specific health concerns. The information provided is for educational purposes only.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MEAL PLAN GENERATOR -->
+    <section class="section meal-plan-generator">
+        <div class="container">
+            <h2 class="text-center">Create Your Personalized Meal Plan</h2>
+            <p class="text-center text-xl text-muted">
+                Fill in your details to receive customized nutrition recommendations
+            </p>
+            
+            <div class="generator-container">
+                <form id="mealPlanForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="age" class="form-label required">Age</label>
+                            <input type="number" id="age" class="form-input" min="18" max="100" required placeholder="e.g., 30">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="weight" class="form-label required">Weight (kg)</label>
+                            <input type="number" id="weight" class="form-input" min="30" max="200" step="0.1" required placeholder="e.g., 70">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="height" class="form-label required">Height (cm)</label>
+                            <input type="number" id="height" class="form-input" min="100" max="250" required placeholder="e.g., 170">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label required">Gender</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="male" name="gender" value="male" required>
+                                <label for="male">Male</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="female" name="gender" value="female" required>
+                                <label for="female">Female</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="other" name="gender" value="other" required>
+                                <label for="other">Other</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label required">Dietary Preference</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="veg" name="diet" value="vegetarian" required>
+                                <label for="veg">Vegetarian</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="nonveg" name="diet" value="non-vegetarian" required>
+                                <label for="nonveg">Non-Vegetarian</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="vegan" name="diet" value="vegan" required>
+                                <label for="vegan">Vegan</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="eggetarian" name="diet" value="eggetarian" required>
+                                <label for="eggetarian">Eggetarian</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="activityLevel" class="form-label required">Activity Level</label>
+                        <select id="activityLevel" class="form-select" required>
+                            <option value="">Select your activity level</option>
+                            <option value="sedentary">Sedentary (little to no exercise)</option>
+                            <option value="light">Light (exercise 1-3 days/week)</option>
+                            <option value="moderate">Moderate (exercise 3-5 days/week)</option>
+                            <option value="active">Active (exercise 6-7 days/week)</option>
+                            <option value="very-active">Very Active (intense exercise daily)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="goal" class="form-label required">Health Goal</label>
+                        <select id="goal" class="form-select" required>
+                            <option value="">Select your primary goal</option>
+                            <option value="maintain">Maintain Current Weight</option>
+                            <option value="lose">Weight Loss</option>
+                            <option value="gain">Weight Gain / Muscle Building</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Generate My Meal Plan</button>
+                </form>
+            </div>
+            
+            <!-- RESULTS CONTAINER -->
+            <div class="results-container" id="resultsContainer">
+                <div class="results-header">
+                    <h2>Your Personalized Meal Plan</h2>
+                    <p class="text-lg text-muted">Based on your profile and goals</p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value" id="bmiValue">--</div>
+                            <div class="stat-label">BMI</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="caloriesValue">--</div>
+                            <div class="stat-label">Daily Calories</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="proteinValue">--</div>
+                            <div class="stat-label">Protein (g)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="carbsValue">--</div>
+                            <div class="stat-label">Carbs (g)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="fatsValue">--</div>
+                            <div class="stat-label">Fats (g)</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- BREAKFAST -->
+                <div class="meal-section">
+                    <h3>🌅 Breakfast (7:00 AM - 9:00 AM)</h3>
+                    <div class="meal-items" id="breakfastItems"></div>
+                </div>
+                
+                <!-- MID-MORNING SNACK -->
+                <div class="meal-section">
+                    <h3>☕ Mid-Morning Snack (10:30 AM - 11:00 AM)</h3>
+                    <div class="meal-items" id="midMorningItems"></div>
+                </div>
+                
+                <!-- LUNCH -->
+                <div class="meal-section">
+                    <h3>🍛 Lunch (12:30 PM - 2:00 PM)</h3>
+                    <div class="meal-items" id="lunchItems"></div>
+                </div>
+                
+                <!-- EVENING SNACK -->
+                <div class="meal-section">
+                    <h3>🍵 Evening Snack (4:00 PM - 5:00 PM)</h3>
+                    <div class="meal-items" id="eveningItems"></div>
+                </div>
+                
+                <!-- DINNER -->
+                <div class="meal-section">
+                    <h3>🌙 Dinner (7:00 PM - 9:00 PM)</h3>
+                    <div class="meal-items" id="dinnerItems"></div>
+                </div>
+                
+                <!-- NOTES -->
+                <div class="notes-section">
+                    <h4>💡 Important Guidelines</h4>
+                    <ul id="guidelinesList"></ul>
+                </div>
+                
+                <!-- ACTION BUTTONS -->
+                <div class="action-buttons">
+                    <button class="btn btn-primary btn-lg" onclick="window.print()">📄 Download/Print Plan</button>
+                    <button class="btn btn-secondary btn-lg" onclick="resetForm()">🔄 Create New Plan</button>
+                    <a href="consulting.html#booking" class="btn btn-secondary btn-lg">💬 Book Consultation</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>The health directory</h4>
+                    <p>
+                        Premium preventive wellness consulting and personalized wellness products.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">FB</a>
+                        <a href="#" class="social-link" aria-label="Instagram">IG</a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">LI</a>
+                        <a href="#" class="social-link" aria-label="Twitter">TW</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="consulting.html">Consulting Services</a></li>
+                        <li><a href="products.html">Custom Products</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="Founder.html">Meet the Founder</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>[Clinic Address]<br>[City, State ZIP]</p>
+                    <p>Email: [email@example.com]</p>
+                    <p>Phone: [+91-XXXX-XXXXXX]</p>
+                    <p>Hours: By appointment only</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 The health directory. All rights reserved.</p>
+                <div class="footer-legal">
+                    <span>Not medical advice</span>
+                    <span>•</span>
+                    <span>Consult your physician</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuToggle.classList.toggle('active');
+        });
+        
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav') && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+            }
+        });
+        
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Meal Plan Database
+        const mealPlans = {
+            vegetarian: {
+                breakfast: [
+                    { name: 'Oats with mixed nuts and berries', quantity: '1 bowl (60g oats)' },
+                    { name: 'Whole wheat toast', quantity: '2 slices' },
+                    { name: 'Scrambled paneer', quantity: '100g' },
+                    { name: 'Glass of milk', quantity: '1 glass (250ml)' }
+                ],
+                midMorning: [
+                    { name: 'Fresh seasonal fruit', quantity: '1 medium (apple/banana)' },
+                    { name: 'Mixed nuts', quantity: '1 handful (30g)' }
+                ],
+                lunch: [
+                    { name: 'Brown rice', quantity: '1 cup (150g cooked)' },
+                    { name: 'Dal (lentils)', quantity: '1 bowl (150g)' },
+                    { name: 'Mixed vegetable curry', quantity: '1 bowl' },
+                    { name: 'Cucumber raita', quantity: '1 small bowl' },
+                    { name: 'Whole wheat chapati', quantity: '2 medium' }
+                ],
+                evening: [
+                    { name: 'Green tea', quantity: '1 cup' },
+                    { name: 'Whole grain biscuits', quantity: '2-3 pieces' },
+                    { name: 'Roasted chickpeas', quantity: '1/2 cup' }
+                ],
+                dinner: [
+                    { name: 'Vegetable soup', quantity: '1 bowl' },
+                    { name: 'Quinoa or millet', quantity: '1 cup cooked' },
+                    { name: 'Paneer tikka or tofu', quantity: '100g' },
+                    { name: 'Sautéed vegetables', quantity: '1 bowl' },
+                    { name: 'Whole wheat chapati', quantity: '1 medium' }
+                ]
+            },
+            'non-vegetarian': {
+                breakfast: [
+                    { name: 'Oats with mixed nuts', quantity: '1 bowl (60g)' },
+                    { name: 'Boiled eggs', quantity: '2 whole' },
+                    { name: 'Whole wheat toast', quantity: '2 slices' },
+                    { name: 'Glass of milk', quantity: '1 glass (250ml)' }
+                ],
+                midMorning: [
+                    { name: 'Fresh seasonal fruit', quantity: '1 medium' },
+                    { name: 'Greek yogurt', quantity: '1 small bowl (100g)' }
+                ],
+                lunch: [
+                    { name: 'Brown rice', quantity: '1 cup (150g cooked)' },
+                    { name: 'Grilled chicken breast', quantity: '150g' },
+                    { name: 'Mixed vegetable curry', quantity: '1 bowl' },
+                    { name: 'Dal (lentils)', quantity: '1 small bowl' },
+                    { name: 'Whole wheat chapati', quantity: '2 medium' }
+                ],
+                evening: [
+                    { name: 'Green tea', quantity: '1 cup' },
+                    { name: 'Boiled egg white', quantity: '2 eggs' },
+                    { name: 'Mixed nuts', quantity: '1 handful (30g)' }
+                ],
+                dinner: [
+                    { name: 'Clear chicken soup', quantity: '1 bowl' },
+                    { name: 'Grilled fish or chicken', quantity: '150g' },
+                    { name: 'Quinoa or brown rice', quantity: '1 cup cooked' },
+                    { name: 'Steamed vegetables', quantity: '1 bowl' },
+                    { name: 'Green salad', quantity: '1 bowl' }
+                ]
+            },
+            vegan: {
+                breakfast: [
+                    { name: 'Oats with almond milk', quantity: '1 bowl (60g)' },
+                    { name: 'Chia seed pudding', quantity: '1 small bowl' },
+                    { name: 'Mixed berries', quantity: '1 cup' },
+                    { name: 'Whole wheat toast', quantity: '2 slices' },
+                    { name: 'Almond butter', quantity: '2 tbsp' }
+                ],
+                midMorning: [
+                    { name: 'Fresh seasonal fruit', quantity: '1 medium' },
+                    { name: 'Mixed nuts and seeds', quantity: '1 handful (30g)' }
+                ],
+                lunch: [
+                    { name: 'Brown rice or quinoa', quantity: '1 cup cooked' },
+                    { name: 'Chickpea curry', quantity: '1 bowl (150g)' },
+                    { name: 'Mixed vegetable sabzi', quantity: '1 bowl' },
+                    { name: 'Whole wheat chapati', quantity: '2 medium' },
+                    { name: 'Green salad', quantity: '1 bowl' }
+                ],
+                evening: [
+                    { name: 'Green tea or herbal tea', quantity: '1 cup' },
+                    { name: 'Roasted chickpeas', quantity: '1/2 cup' },
+                    { name: 'Fresh fruit', quantity: '1 medium' }
+                ],
+                dinner: [
+                    { name: 'Vegetable soup', quantity: '1 bowl' },
+                    { name: 'Tofu stir-fry', quantity: '150g tofu' },
+                    { name: 'Quinoa or millet', quantity: '1 cup cooked' },
+                    { name: 'Steamed broccoli', quantity: '1 cup' },
+                    { name: 'Mixed greens salad', quantity: '1 bowl' }
+                ]
+            },
+            eggetarian: {
+                breakfast: [
+                    { name: 'Scrambled eggs', quantity: '3 whole eggs' },
+                    { name: 'Whole wheat toast', quantity: '2 slices' },
+                    { name: 'Oats with milk', quantity: '1 bowl (60g)' },
+                    { name: 'Mixed berries', quantity: '1 cup' }
+                ],
+                midMorning: [
+                    { name: 'Boiled eggs', quantity: '2 eggs' },
+                    { name: 'Fresh fruit', quantity: '1 medium' }
+                ],
+                lunch: [
+                    { name: 'Brown rice', quantity: '1 cup cooked' },
+                    { name: 'Dal (lentils)', quantity: '1 bowl' },
+                    { name: 'Egg curry', quantity: '2 eggs' },
+                    { name: 'Mixed vegetables', quantity: '1 bowl' },
+                    { name: 'Whole wheat chapati', quantity: '2 medium' }
+                ],
+                evening: [
+                    { name: 'Green tea', quantity: '1 cup' },
+                    { name: 'Egg white omelette', quantity: '3 egg whites' },
+                    { name: 'Whole grain crackers', quantity: '4-5 pieces' }
+                ],
+                dinner: [
+                    { name: 'Vegetable soup', quantity: '1 bowl' },
+                    { name: 'Boiled eggs', quantity: '2 whole' },
+                    { name: 'Quinoa or brown rice', quantity: '1 cup cooked' },
+                    { name: 'Sautéed vegetables', quantity: '1 bowl' },
+                    { name: 'Green salad', quantity: '1 bowl' }
+                ]
+            }
+        };
+        
+        // Calculate BMI
+        function calculateBMI(weight, height) {
+            const heightInMeters = height / 100;
+            return (weight / (heightInMeters * heightInMeters)).toFixed(1);
+        }
+        
+        // Calculate BMR (Basal Metabolic Rate)
+        function calculateBMR(weight, height, age, gender) {
+            if (gender === 'male') {
+                return 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
+            } else {
+                return 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+            }
+        }
+        
+        // Calculate TDEE (Total Daily Energy Expenditure)
+        function calculateTDEE(bmr, activityLevel) {
+            const multipliers = {
+                'sedentary': 1.2,
+                'light': 1.375,
+                'moderate': 1.55,
+                'active': 1.725,
+                'very-active': 1.9
+            };
+            return bmr * multipliers[activityLevel];
+        }
+        
+        // Adjust calories based on goal
+        function adjustCaloriesForGoal(tdee, goal) {
+            if (goal === 'lose') {
+                return Math.round(tdee - 500); // 500 calorie deficit
+            } else if (goal === 'gain') {
+                return Math.round(tdee + 300); // 300 calorie surplus
+            }
+            return Math.round(tdee);
+        }
+        
+        // Calculate macros
+        function calculateMacros(calories, goal) {
+            let proteinPercent, carbsPercent, fatsPercent;
+            
+            if (goal === 'lose') {
+                proteinPercent = 0.35;
+                carbsPercent = 0.35;
+                fatsPercent = 0.30;
+            } else if (goal === 'gain') {
+                proteinPercent = 0.30;
+                carbsPercent = 0.45;
+                fatsPercent = 0.25;
+            } else {
+                proteinPercent = 0.30;
+                carbsPercent = 0.40;
+                fatsPercent = 0.30;
+            }
+            
+            return {
+                protein: Math.round((calories * proteinPercent) / 4),
+                carbs: Math.round((calories * carbsPercent) / 4),
+                fats: Math.round((calories * fatsPercent) / 9)
+            };
+        }
+        
+        // Render meal items
+        function renderMealItems(containerId, items) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            
+            items.forEach(item => {
+                const mealItem = document.createElement('div');
+                mealItem.className = 'meal-item';
+                mealItem.innerHTML = `
+                    <span class="meal-name">${item.name}</span>
+                    <span class="meal-quantity">${item.quantity}</span>
+                `;
+                container.appendChild(mealItem);
+            });
+        }
+        
+        // Generate guidelines
+        function generateGuidelines(goal, diet) {
+            const guidelines = [
+                'Drink at least 3-4 liters of water throughout the day',
+                'Avoid processed foods, excessive sugar, and trans fats',
+                'Eat meals at consistent times for better digestion',
+                'Include a variety of colorful vegetables for micronutrients'
+            ];
+            
+            if (goal === 'lose') {
+                guidelines.push('Focus on portion control and avoid late-night snacking');
+                guidelines.push('Incorporate 30-45 minutes of cardio exercise daily');
+            } else if (goal === 'gain') {
+                guidelines.push('Eat calorie-dense, nutrient-rich foods');
+                guidelines.push('Include strength training 4-5 times per week');
+            }
+            
+            if (diet === 'vegan') {
+                guidelines.push('Consider B12 supplementation after consulting a doctor');
+                guidelines.push('Combine plant proteins for complete amino acid profiles');
+            }
+            
+            guidelines.push('Consult a healthcare professional before making major dietary changes');
+            
+            return guidelines;
+        }
+        
+        // Form submission
+        document.getElementById('mealPlanForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const age = parseInt(document.getElementById('age').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseInt(document.getElementById('height').value);
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const diet = document.querySelector('input[name="diet"]:checked').value;
+            const activityLevel = document.getElementById('activityLevel').value;
+            const goal = document.getElementById('goal').value;
+            
+            // Calculate nutritional values
+            const bmi = calculateBMI(weight, height);
+            const bmr = calculateBMR(weight, height, age, gender);
+            const tdee = calculateTDEE(bmr, activityLevel);
+            const calories = adjustCaloriesForGoal(tdee, goal);
+            const macros = calculateMacros(calories, goal);
+            
+            // Update stats
+            document.getElementById('bmiValue').textContent = bmi;
+            document.getElementById('caloriesValue').textContent = calories;
+            document.getElementById('proteinValue').textContent = macros.protein + 'g';
+            document.getElementById('carbsValue').textContent = macros.carbs + 'g';
+            document.getElementById('fatsValue').textContent = macros.fats + 'g';
+            
+            // Get meal plan
+            const plan = mealPlans[diet];
+            
+            // Render meals
+            renderMealItems('breakfastItems', plan.breakfast);
+            renderMealItems('midMorningItems', plan.midMorning);
+            renderMealItems('lunchItems', plan.lunch);
+            renderMealItems('eveningItems', plan.evening);
+            renderMealItems('dinnerItems', plan.dinner);
+            
+            // Generate and render guidelines
+            const guidelines = generateGuidelines(goal, diet);
+            const guidelinesList = document.getElementById('guidelinesList');
+            guidelinesList.innerHTML = '';
+            guidelines.forEach(guideline => {
+                const li = document.createElement('li');
+                li.textContent = guideline;
+                guidelinesList.appendChild(li);
+            });
+            
+            // Show results
+            document.getElementById('resultsContainer').classList.add('active');
+            
+            // Scroll to results
+            document.getElementById('resultsContainer').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+            
+            // Store in localStorage
+            const mealPlanData = {
+                profile: { age, weight, height, gender, diet, activityLevel, goal },
+                nutrition: { bmi, calories, ...macros },
+                timestamp: new Date().toISOString()
+            };
+            
+            const savedPlans = JSON.parse(localStorage.getItem('mealPlans') || '[]');
+            savedPlans.push(mealPlanData);
+            localStorage.setItem('mealPlans', JSON.stringify(savedPlans));
+        });
+        
+        // Reset form
+        function resetForm() {
+            document.getElementById('mealPlanForm').reset();
+            document.getElementById('resultsContainer').classList.remove('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
