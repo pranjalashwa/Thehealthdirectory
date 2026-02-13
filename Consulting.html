@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulting Services - The health directory</title>
+    <meta name="description" content="Personalized preventive wellness consulting services. Choose from Foundation, Signature, or Concierge programs tailored to your health goals.">
+    <style>
+        /* ═══════════════════════════════════════════════════════════════
+           DESIGN SYSTEM - CSS VARIABLES (Same as index.html)
+           ═══════════════════════════════════════════════════════════════ */
+        
+        :root {
+            --color-primary: #2C5F4F;
+            --color-primary-light: #3A7561;
+            --color-primary-dark: #1E4438;
+            --color-accent: #8B7355;
+            --color-accent-light: #A68968;
+            
+            --color-bg-main: #FDFDFB;
+            --color-bg-secondary: #F7F6F3;
+            --color-bg-tertiary: #EFEEE9;
+            --color-surface: #FFFFFF;
+            
+            --color-text-primary: #1A1A1A;
+            --color-text-secondary: #4A4A4A;
+            --color-text-muted: #757575;
+            --color-text-light: #FFFFFF;
+            
+            --color-border: #E0DED7;
+            --color-border-light: #F0EEE7;
+            
+            --color-success: #3A7561;
+            --color-error: #B85C50;
+            --color-warning: #C9A86A;
+            
+            --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            --font-secondary: Georgia, 'Times New Roman', serif;
+            
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 2rem;
+            --font-size-4xl: 2.5rem;
+            --font-size-5xl: 3rem;
+            
+            --font-weight-light: 300;
+            --font-weight-normal: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 600;
+            --font-weight-bold: 700;
+            
+            --line-height-tight: 1.2;
+            --line-height-normal: 1.5;
+            --line-height-relaxed: 1.75;
+            
+            --space-xs: 0.5rem;
+            --space-sm: 0.75rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+            --space-4xl: 6rem;
+            
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --radius-full: 9999px;
+            
+            --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.12);
+            
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+            
+            --container-max: 1200px;
+            --container-padding: var(--space-xl);
+            --header-height: 80px;
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           BASE STYLES
+           ═══════════════════════════════════════════════════════════════ */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-normal);
+            line-height: var(--line-height-normal);
+            color: var(--color-text-primary);
+            background-color: var(--color-bg-main);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+        
+        button {
+            font-family: inherit;
+            cursor: pointer;
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           TYPOGRAPHY
+           ═══════════════════════════════════════════════════════════════ */
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: var(--font-weight-semibold);
+            line-height: var(--line-height-tight);
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-lg);
+        }
+        
+        h1 {
+            font-size: var(--font-size-5xl);
+            font-weight: var(--font-weight-bold);
+            letter-spacing: -0.02em;
+        }
+        
+        h2 {
+            font-size: var(--font-size-4xl);
+            letter-spacing: -0.01em;
+        }
+        
+        h3 {
+            font-size: var(--font-size-3xl);
+        }
+        
+        h4 {
+            font-size: var(--font-size-2xl);
+        }
+        
+        p {
+            margin-bottom: var(--space-md);
+            line-height: var(--line-height-relaxed);
+            color: var(--color-text-secondary);
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .text-lg {
+            font-size: var(--font-size-lg);
+        }
+        
+        .text-xl {
+            font-size: var(--font-size-xl);
+        }
+        
+        .text-muted {
+            color: var(--color-text-muted);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           LAYOUT
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+        
+        .section {
+            padding: var(--space-4xl) 0;
+        }
+        
+        .section-sm {
+            padding: var(--space-3xl) 0;
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           HEADER & NAVIGATION
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            background-color: rgba(253, 253, 251, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border-light);
+            z-index: 1000;
+            transition: box-shadow var(--transition-base);
+        }
+        
+        .header.scrolled {
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .header-container {
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            height: 70px;
+        }
+        
+        .logo img {
+            height: 100%;
+            width: auto;
+            display: block;
+        }
+        
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xl);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: var(--space-xl);
+        }
+        
+        .nav-link {
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            color: var(--color-text-secondary);
+            transition: color var(--transition-fast);
+            position: relative;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--color-primary);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-primary);
+            transition: width var(--transition-base);
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            padding: var(--space-sm);
+            cursor: pointer;
+        }
+        
+        .mobile-menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: var(--color-text-primary);
+            margin: 5px 0;
+            transition: all var(--transition-base);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           BUTTONS
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-md) var(--space-xl);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            text-align: center;
+            border: none;
+            transition: all var(--transition-base);
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--color-primary-dark);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+        }
+        
+        .btn-lg {
+            padding: var(--space-lg) var(--space-2xl);
+            font-size: var(--font-size-base);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           PAGE HERO
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .page-hero {
+            margin-top: var(--header-height);
+            padding: var(--space-4xl) 0;
+            background: linear-gradient(135deg, rgba(44, 95, 79, 0.05) 0%, rgba(139, 115, 85, 0.05) 100%);
+            text-align: center;
+        }
+        
+        .page-hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: var(--space-md);
+        }
+        
+        .page-hero p {
+            font-size: var(--font-size-xl);
+            max-width: 700px;
+            margin: 0 auto var(--space-lg);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           PRICING CARDS
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--space-xl);
+            margin-top: var(--space-3xl);
+        }
+        
+        .pricing-card {
+            background-color: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+            box-shadow: var(--shadow-sm);
+            border: 2px solid var(--color-border-light);
+            transition: all var(--transition-base);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .pricing-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+        
+        .pricing-card.featured {
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .pricing-badge {
+            display: inline-block;
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            padding: var(--space-xs) var(--space-md);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--space-lg);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .pricing-title {
+            font-size: var(--font-size-2xl);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .pricing-description {
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-xl);
+            font-size: var(--font-size-sm);
+        }
+        
+        .pricing-price {
+            font-size: var(--font-size-4xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary);
+            margin-bottom: var(--space-xs);
+        }
+        
+        .pricing-period {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-muted);
+            margin-bottom: var(--space-xl);
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: var(--space-xl);
+            flex-grow: 1;
+        }
+        
+        .pricing-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+        
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--color-primary);
+            font-weight: var(--font-weight-bold);
+            flex-shrink: 0;
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           PROCESS SECTION
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-2xl);
+            margin-top: var(--space-3xl);
+        }
+        
+        .process-step {
+            text-align: center;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-bold);
+            margin: 0 auto var(--space-lg);
+        }
+        
+        .step-title {
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .step-description {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           BOOKING FORM
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .booking-section {
+            background-color: var(--color-bg-secondary);
+        }
+        
+        .booking-form {
+            max-width: 700px;
+            margin: var(--space-3xl) auto 0;
+            background-color: var(--color-surface);
+            padding: var(--space-2xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .form-group {
+            margin-bottom: var(--space-lg);
+        }
+        
+        .form-label {
+            display: block;
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .form-label.required::after {
+            content: ' *';
+            color: var(--color-error);
+        }
+        
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: var(--space-md);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-base);
+            font-family: inherit;
+            transition: border-color var(--transition-fast);
+        }
+        
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(44, 95, 79, 0.1);
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-sm);
+        }
+        
+        .form-checkbox-group input[type="checkbox"] {
+            margin-top: 3px;
+        }
+        
+        .form-checkbox-group label {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .footer {
+            background-color: var(--color-text-primary);
+            color: var(--color-text-light);
+            padding: var(--space-4xl) 0 var(--space-xl);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-3xl);
+            margin-bottom: var(--space-3xl);
+        }
+        
+        .footer-section h4 {
+            color: var(--color-text-light);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: var(--font-size-sm);
+            line-height: var(--line-height-relaxed);
+        }
+        
+        .footer-section a:hover {
+            color: var(--color-text-light);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: var(--space-sm);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color var(--transition-fast);
+        }
+        
+        .social-link:hover {
+            background-color: var(--color-primary);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: var(--space-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+        
+        .footer-legal {
+            display: flex;
+            gap: var(--space-lg);
+            font-size: var(--font-size-xs);
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════════════════════════════ */
+        
+        @media (max-width: 768px) {
+            :root {
+                --header-height: 70px;
+                --container-padding: var(--space-lg);
+            }
+            
+            h1 {
+                font-size: var(--font-size-3xl);
+            }
+            
+            h2 {
+                font-size: var(--font-size-2xl);
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: var(--header-height);
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - var(--header-height));
+                background-color: var(--color-surface);
+                flex-direction: column;
+                padding: var(--space-xl);
+                box-shadow: var(--shadow-lg);
+                transition: left var(--transition-base);
+                overflow-y: auto;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           ACCESSIBILITY
+           ═══════════════════════════════════════════════════════════════ */
+        
+        :focus-visible {
+            outline: 3px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo" aria-label="The health directory home">
+                <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/aaf47a23-01ed-4eb6-887a-a3953f070254" alt="The health directory logo">
+            </a>
+            
+            <nav class="nav" aria-label="Main navigation">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="consulting.html" class="nav-link active">Consulting</a></li>
+                    <li><a href="products.html" class="nav-link">Products</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="owner.html" class="nav-link">Owner</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <a href="#booking" class="btn btn-primary">Book a Consultation</a>
+                
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Consulting Services</h1>
+            <p>
+                Personalized preventive wellness programs designed to help you build sustainable habits and optimize your health baseline.
+            </p>
+        </div>
+    </section>
+
+    <!-- PRICING SECTION -->
+    <section class="section">
+        <div class="container">
+            <h2 class="text-center">Choose Your Program</h2>
+            <p class="text-center text-xl text-muted">
+                Select the level of support that fits your goals and lifestyle
+            </p>
+            
+            <div class="pricing-grid">
+                <!-- Foundation Package -->
+                <div class="pricing-card">
+                    <h3 class="pricing-title">Foundation</h3>
+                    <p class="pricing-description">
+                        Perfect for those starting their preventive wellness journey
+                    </p>
+                    <div class="pricing-price">₹12,000</div>
+                    <div class="pricing-period">One-time consultation + plan</div>
+                    
+                    <ul class="pricing-features">
+                        <li>90-minute comprehensive assessment</li>
+                        <li>Personalized wellness roadmap</li>
+                        <li>Sleep, nutrition & movement plan</li>
+                        <li>Evidence-informed recommendations</li>
+                        <li>30-day email support</li>
+                        <li>Digital resource library access</li>
+                    </ul>
+                    
+                    <a href="#booking" class="btn btn-secondary btn-lg">Get Started</a>
+                </div>
+                
+                <!-- Signature Package -->
+                <div class="pricing-card featured">
+                    <span class="pricing-badge">Most Popular</span>
+                    <h3 class="pricing-title">Signature</h3>
+                    <p class="pricing-description">
+                        Comprehensive 3-month program with ongoing support
+                    </p>
+                    <div class="pricing-price">₹32,000</div>
+                    <div class="pricing-period">3-month program</div>
+                    
+                    <ul class="pricing-features">
+                        <li>Everything in Foundation</li>
+                        <li>6 bi-weekly follow-up sessions (45 min each)</li>
+                        <li>Habit tracking & accountability</li>
+                        <li>Progress assessments & plan adjustments</li>
+                        <li>Priority email & chat support</li>
+                        <li>Custom product recommendations</li>
+                        <li>Educational materials & resources</li>
+                    </ul>
+                    
+                    <a href="#booking" class="btn btn-primary btn-lg">Get Started</a>
+                </div>
+                
+                <!-- Concierge Package -->
+                <div class="pricing-card">
+                    <h3 class="pricing-title">Concierge</h3>
+                    <p class="pricing-description">
+                        Premium 6-month program for executive wellness
+                    </p>
+                    <div class="pricing-price">₹75,000</div>
+                    <div class="pricing-period">6-month program</div>
+                    
+                    <ul class="pricing-features">
+                        <li>Everything in Signature</li>
+                        <li>12 bi-weekly sessions (60 min each)</li>
+                        <li>Monthly in-depth progress reviews</li>
+                        <li>24/7 priority support access</li>
+                        <li>Customized product bundles included</li>
+                        <li>Coordination with other health providers</li>
+                        <li>Travel & lifestyle integration support</li>
+                        <li>Lifetime resource library access</li>
+                    </ul>
+                    
+                    <a href="#booking" class="btn btn-secondary btn-lg">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS SECTION -->
+    <section class="section" style="background-color: var(--color-bg-secondary);">
+        <div class="container">
+            <h2 class="text-center">How Consulting Works</h2>
+            <p class="text-center text-xl text-muted">
+                A structured, collaborative approach to building wellness
+            </p>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Initial Assessment</h3>
+                    <p class="step-description">
+                        Complete a comprehensive intake form covering your health history, goals, daily routines, and challenges. This helps us understand your baseline.
+                    </p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Consultation Session</h3>
+                    <p class="step-description">
+                        Meet for a detailed discussion (online or in-person) to review your assessment, clarify priorities, and address questions.
+                    </p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Personalized Plan</h3>
+                    <p class="step-description">
+                        Receive a customized wellness roadmap with actionable steps for sleep, nutrition, movement, and stress management.
+                    </p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Implementation</h3>
+                    <p class="step-description">
+                        Begin implementing your plan with ongoing support, accountability check-ins, and adjustments as needed.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOOKING SECTION -->
+    <section class="section booking-section" id="booking">
+        <div class="container">
+            <h2 class="text-center">Book Your Consultation</h2>
+            <p class="text-center text-xl text-muted">
+                Fill out the form below and we'll contact you within 24 hours
+            </p>
+            
+            <form class="booking-form" id="bookingForm">
+                <div class="form-group">
+                    <label for="fullName" class="form-label required">Full Name</label>
+                    <input type="text" id="fullName" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" class="form-label required">Email Address</label>
+                    <input type="email" id="email" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone" class="form-label required">Phone Number</label>
+                    <input type="tel" id="phone" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="package" class="form-label required">Preferred Package</label>
+                    <select id="package" class="form-select" required>
+                        <option value="">Select a package</option>
+                        <option value="foundation">Foundation - ₹12,000</option>
+                        <option value="signature">Signature - ₹32,000</option>
+                        <option value="concierge">Concierge - ₹75,000</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="consultationType" class="form-label required">Consultation Type</label>
+                    <select id="consultationType" class="form-select" required>
+                        <option value="">Select consultation type</option>
+                        <option value="online">Online (Video Call)</option>
+                        <option value="in-person">In-Person</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="goals" class="form-label">Primary Health Goals</label>
+                    <textarea id="goals" class="form-textarea" placeholder="Briefly describe what you'd like to focus on (sleep, nutrition, stress, movement, etc.)"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <div class="form-checkbox-group">
+                        <input type="checkbox" id="consent" required>
+                        <label for="consent">
+                            I understand this is for preventive wellness consulting and not a substitute for medical advice. I consent to being contacted and to the <a href="privacy.html" style="color: var(--color-primary); text-decoration: underline;">Privacy Policy</a>.
+                        </label>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Submit Booking Request</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>The health directory</h4>
+                    <p>
+                        Premium preventive wellness consulting and personalized wellness products.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">FB</a>
+                        <a href="#" class="social-link" aria-label="Instagram">IG</a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">LI</a>
+                        <a href="#" class="social-link" aria-label="Twitter">TW</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="consulting.html">Consulting Services</a></li>
+                        <li><a href="products.html">Custom Products</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="owner.html">Meet the Owner</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>[Clinic Address]<br>[City, State ZIP]</p>
+                    <p>Email: [email@example.com]</p>
+                    <p>Phone: [+91-XXXX-XXXXXX]</p>
+                    <p>Hours: By appointment only</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 The health directory. All rights reserved.</p>
+                <div class="footer-legal">
+                    <span>Not medical advice</span>
+                    <span>•</span>
+                    <span>Consult your physician</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuToggle.classList.toggle('active');
+        });
+        
+        // Close mobile menu on click outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav') && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+            }
+        });
+        
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Booking Form Submission
+        const bookingForm = document.getElementById('bookingForm');
+        
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                package: document.getElementById('package').value,
+                consultationType: document.getElementById('consultationType').value,
+                goals: document.getElementById('goals').value,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Store in localStorage for demo
+            const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+            bookings.push(formData);
+            localStorage.setItem('bookings', JSON.stringify(bookings));
+            
+            alert('Thank you for your booking request! We will contact you within 24 hours to confirm your appointment.');
+            bookingForm.reset();
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
